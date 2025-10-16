@@ -8,7 +8,6 @@ async function takeScreenshot(pageUrl) {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: false,
-    userDataDir: './tmp',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -24,6 +23,8 @@ async function takeScreenshot(pageUrl) {
   });
 
   await page.goto(pageUrl);
+
+  await new Promise(resolve => setTimeout(resolve, 5000));
 
   // выбор региона
   const button = await page.$('.Region_region__6OUBn');
